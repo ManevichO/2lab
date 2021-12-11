@@ -3,6 +3,7 @@ package lab;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        Formula formula = new Formula();
+        formula.setVisible(true);
     }
 }
