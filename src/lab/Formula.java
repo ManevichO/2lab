@@ -76,4 +76,48 @@ public class Formula extends JFrame {
         button3.addActionListener(new ButtonEventListener ());
         button4.addActionListener(new ButtonEventListener ());
     }
+
+    public class ButtonEventListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            try {
+                if (e.getSource() == radio1)
+                    formula = 1;
+                else if (e.getSource() == radio2)
+                    formula = 0;
+                else if (e.getSource() == button1) {
+                    Double x = Double.parseDouble(textFieldX.getText());
+                    Double y = Double.parseDouble(textFieldY.getText());
+                    Double z = Double.parseDouble(textFieldZ.getText());
+                    if (formula == 1)
+                        result = calculate1(x, y, z);
+                    else if (formula == 0)
+                        result = calculate2(x, y, z);
+                    textFieldResult.setText(result.toString());
+                }
+
+                else  if (e.getSource() == button2) {
+                    textFieldX.setText("0");
+                    textFieldY.setText("0");
+                    textFieldZ.setText("0");
+                    textFieldResult.setText("0");
+                }
+
+                else if(e.getSource() == button3) {
+                    result = Double.parseDouble(textFieldResult.getText());
+                    sum += result;
+                    textFieldResult.setText(sum.toString());
+                }
+
+                else if(e.getSource() == button4) {
+                    textFieldResult.setText("0");
+                    result = Double.parseDouble(textFieldResult.getText());
+                    sum = 0.0;
+                    textFieldResult.setText(sum.toString());
+                }
+
+            }catch (NumberFormatException exception ) {
+                JOptionPane.showMessageDialog(Formula.this, "Ошибка в формате записи числа с плавающей точкой", "Ошибочный формат числа", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }
 }
